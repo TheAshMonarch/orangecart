@@ -289,7 +289,7 @@ function Step3({ data, setData, onNext, onBack }: any) {
       </button>
 
       <h2 className="font-bold mb-1" style={{ color: "#1e3a34", fontSize: 24, fontFamily: "Georgia, serif" }}>
-        What brings you to OrangeCat?
+        What brings you to OrangeCart?
       </h2>
       <p className="text-sm mb-8" style={{ color: "#6b7f76" }}>
         Choose the option that best describes you

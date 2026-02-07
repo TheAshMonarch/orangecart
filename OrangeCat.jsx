@@ -76,14 +76,14 @@ const CREATORS = [
 ];
 
 const TESTIMONIALS = [
-  { name: "Sarah M.", avatar: "S", text: "OrangeCat made our packaging redesign painless. The quality blew away what we had before.", stars: 5 },
+  { name: "Sarah M.", avatar: "S", text: "OrangeCart made our packaging redesign painless. The quality blew away what we had before.", stars: 5 },
   { name: "James K.", avatar: "J", text: "Honestly shocked at how polished everything came out. Worth every cent.", stars: 5 },
   { name: "Priya N.", avatar: "P", text: "The editor is so intuitive. I had our new product page live in under an hour.", stars: 5 },
   { name: "Marco R.", avatar: "M", text: "Great selection of creators. Found exactly the style we needed for our launch.", stars: 4 },
 ];
 
 const PRICING = [
-  { tier: "Starter", price: 0, features: ["Access to 500+ templates", "Basic editor tools", "PNG download", "OrangeCat watermark"], cta: "Get Started", highlight: false },
+  { tier: "Starter", price: 0, features: ["Access to 500+ templates", "Basic editor tools", "PNG download", "OrangeCart watermark"], cta: "Get Started", highlight: false },
   { tier: "Pro",     price: 29, features: ["Unlimited templates", "Advanced editor", "SVG & PDF export", "No watermark", "Priority support"], cta: "Go Pro", highlight: true },
   { tier: "Business", price: 79, features: ["Everything in Pro", "Team collaboration", "Brand kit storage", "Commercial licence", "Dedicated account manager"], cta: "Contact Sales", highlight: false },
 ];
@@ -389,7 +389,7 @@ function Pricing() {
 
 function Footer() {
   const cols = [
-    { title: "OrangeCat", items: ["About Us", "Careers", "Press", "Blog"] },
+    { title: "OrangeCart", items: ["About Us", "Careers", "Press", "Blog"] },
     { title: "Product", items: ["Logo Maker", "Brand Kit", "Templates", "Pricing"] },
     { title: "Support", items: ["Help Center", "Contact Us", "Terms of Service", "Privacy Policy"] },
     { title: "Follow Us", items: ["Twitter", "Instagram", "LinkedIn", "YouTube"] },
@@ -412,7 +412,7 @@ function Footer() {
           ))}
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 28 }}>
-          <span style={{ color: "#4a6b5c", fontSize: 13, fontFamily: "'Segoe UI', sans-serif" }}>© 2026 OrangeCat. All rights reserved.</span>
+          <span style={{ color: "#4a6b5c", fontSize: 13, fontFamily: "'Segoe UI', sans-serif" }}>© 2026 OrangeCart. All rights reserved.</span>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <div style={{ width: 22, height: 22, borderRadius: 6, background: "#F28C38", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ color: "#fff", fontSize: 11 }}>🐱</span>

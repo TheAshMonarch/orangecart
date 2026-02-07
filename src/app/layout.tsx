@@ -6,7 +6,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>OrangeCat</title>
+        <title>OrangeCart</title>
       </head>
       <body>{children}</body>
     </html>

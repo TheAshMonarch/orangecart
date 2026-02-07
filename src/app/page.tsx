@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingBag, Search, Menu, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 
-const OrangeCatHomepage = () => {
+const OrangeCartHomepage = () => {
   const [currentTheme, setCurrentTheme] = useState(0);
   const [showAuth, setShowAuth] = useState(false);
   const [showSign, setShowSign] = useState(false);
@@ -62,7 +62,7 @@ const OrangeCatHomepage = () => {
             <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm">
               🐱
             </div>
-            orangecat
+            orangecart
           </div>
           
           <div className={`hidden md:flex items-center gap-8 ${theme.text}`}>
@@ -255,7 +255,7 @@ const OrangeCatHomepage = () => {
                 Designed by
                 <span className="flex items-center gap-1">
                   <span className="w-5 h-5 bg-orange-500 rounded-full"></span>
-                  <span className="font-medium">orangecat team</span>
+                  <span className="font-medium">orangecart team</span>
                 </span>
               </p>
             </div>
@@ -286,7 +286,7 @@ const OrangeCatHomepage = () => {
                 role: "Small Business Owner",
                 avatar: "👩‍💼",
                 rating: 5,
-                text: "OrangeCat has transformed how I run my online store. The platform is intuitive and my sales have tripled since joining!",
+                text: "OrangeCart has transformed how I run my online store. The platform is intuitive and my sales have tripled since joining!",
               },
               {
                 name: "Michael Chen",
@@ -300,7 +300,7 @@ const OrangeCatHomepage = () => {
                 role: "Artisan Seller",
                 avatar: "👩‍🎨",
                 rating: 5,
-                text: "As a creator, OrangeCat gives me the perfect platform to reach customers who truly appreciate handmade goods.",
+                text: "As a creator, OrangeCart gives me the perfect platform to reach customers who truly appreciate handmade goods.",
               },
             ].map((review, i) => (
               <div
@@ -450,7 +450,7 @@ const OrangeCatHomepage = () => {
                 <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white text-lg">
                   🐱
                 </div>
-                <span className="text-2xl font-bold">orangecat</span>
+                <span className="text-2xl font-bold">orangecart</span>
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed">
                 Your one-stop marketplace for everything you need. Connect with sellers and buyers from around the world.
@@ -531,7 +531,7 @@ const OrangeCatHomepage = () => {
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © 2026 OrangeCat. All rights reserved.
+              © 2026 OrangeCart. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-orange-500 transition">
@@ -563,4 +563,4 @@ const OrangeCatHomepage = () => {
   );
 };
 
-export default OrangeCatHomepage;
+export default OrangeCartHomepage;
