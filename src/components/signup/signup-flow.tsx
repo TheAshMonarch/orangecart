@@ -1,10 +1,29 @@
 "use client";
 import AuthOverlay from "@/components/authoverlay";
-import { useState, useMemo } from "react";
+import React, { Dispatch, SetStateAction, useState, useMemo } from "react";
 import AuthCard from "@/components/authcard";
 import Logo from "@/components/Logo";
 import OAuthButton from "@/components/OAuthButtons";
 
+// data={formData} setShowAuth={setShowAuth} setShowSign={setShowSign} onChange={handleChange} onNext={() => setCurrentStep(2)} 
+interface signUpProps{
+  onClose: () => void;
+  setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowSign: React.Dispatch<React.SetStateAction<boolean>>;
+}
+interface rightPanelProps{
+  currentStep: number;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowSign: React.Dispatch<React.SetStateAction<boolean>>;
+}
+interface stepProps{
+  data: Dispatch<SetStateAction<object>>;
+  onNext: () => void;
+  setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowSign: React.Dispatch<React.SetStateAction<boolean>>;
+
+}
 /* ─── LEFT PANEL (reused brand panel) ──────────────────── */
 function LeftPanel({ currentStep }: { currentStep: number }) {
   const perks = [
@@ -95,7 +114,7 @@ function getStrength(pw: string): { score: number; label: string; color: string 
 }
 
 /* ─── STEP 1: Name & Email ────────────────────────────── */
-function Step1({ data, onChange, onNext }: any) {
+function Step1({ data, onChange, onNext, setShowAuth, setShowSign }: any) {
   const inputStyle: React.CSSProperties = {
     border: "1px solid #ddd8d2",
     padding: "10px 14px",
@@ -113,7 +132,10 @@ function Step1({ data, onChange, onNext }: any) {
       </h2>
       <p className="text-sm mb-5" style={{ color: "#6b7f76" }}>
         Already have an account?{" "}
-        <a href="/signin" className="font-semibold underline underline-offset-2 hover:opacity-70 transition-opacity" style={{ color: "#1e3a34" }}>
+        <a onClick={() => {
+          setShowSign(true)
+          setShowAuth(false)}}
+          className="font-semibold cursor-pointer underline underline-offset-2 hover:opacity-70 transition-opacity" style={{ color: "#1e3a34" }}>
           Sign in
         </a>
       </p>
@@ -536,7 +558,7 @@ function Step4({ data, onChange, onComplete, onBack }: any) {
 }
 
 /* ─── MAIN COMPONENT WITH STEP FLOW ────────────────────── */
-function RightPanel({ currentStep, setCurrentStep }: any) {
+function RightPanel({ currentStep, setCurrentStep, setShowAuth, setShowSign }: rightPanelProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -559,7 +581,7 @@ function RightPanel({ currentStep, setCurrentStep }: any) {
   return (
     <>
       {currentStep === 1 && (
-        <Step1 data={formData} onChange={handleChange} onNext={() => setCurrentStep(2)} />
+        <Step1 data={formData} setShowAuth={setShowAuth} setShowSign={setShowSign} onChange={handleChange} onNext={() => setCurrentStep(2)} />
       )}
       {currentStep === 2 && (
         <Step2 data={formData} onChange={handleChange} onNext={() => setCurrentStep(3)} onBack={() => setCurrentStep(1)} />
@@ -575,14 +597,14 @@ function RightPanel({ currentStep, setCurrentStep }: any) {
 }
 
 /* ─── PAGE ───────────────────────────────────────────── */
-export default function SignUpFlow({ onClose }: { onClose: () => void }) {
+export default function SignUpFlow({ onClose,setShowSign, setShowAuth }: signUpProps) {
   const [currentStep, setCurrentStep] = useState(1);
 
   return (
       <AuthOverlay
         onClose={onClose}
         left={<LeftPanel currentStep={currentStep} />}
-        right={<RightPanel currentStep={currentStep} setCurrentStep={setCurrentStep} />}
+        right={<RightPanel setShowAuth={setShowAuth} setShowSign={setShowSign} currentStep={currentStep} setCurrentStep={setCurrentStep} />}
       />
   );
 }

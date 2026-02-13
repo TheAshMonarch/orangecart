@@ -1,9 +1,19 @@
 "use client";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import AuthCard from "@/components/authcard";
 import Logo from "@/components/Logo";
 import OAuthButton, { EmailButton } from "@/components/OAuthButtons";
 import AuthOverlay from "../authoverlay";
+
+interface signInProps{
+  onClose: () => void;
+  setShowSign: Dispatch<SetStateAction<boolean>>;
+  setShowAuth: Dispatch<SetStateAction<boolean>>;
+}
+interface rightPanelProps{
+  setShowSign: Dispatch<SetStateAction<boolean>>;
+  setShowAuth: Dispatch<SetStateAction<boolean>>;
+}
 
 /* ─── LEFT PANEL — branded perks + illustration ────── */
 function LeftPanel() {
@@ -78,7 +88,7 @@ function LeftPanel() {
 }
 
 /* ─── RIGHT PANEL — auth forms ───────────────────────── */
-function RightPanel() {
+function RightPanel({ setShowAuth, setShowSign }: rightPanelProps) {
   // view: "methods" | "email"
   const [view, setView] = useState<"methods" | "email">("methods");
   const [showPassword, setShowPassword] = useState(false);
@@ -96,9 +106,12 @@ function RightPanel() {
         </h2>
         <p className="text-sm mb-6" style={{ color: "#6b7f76" }}>
           Don't have an account?{" "}
-          <a href="/signup" className="font-semibold underline underline-offset-2 hover:opacity-70 transition-opacity" style={{ color: "#1e3a34" }}>
+          <span onClick={() => {
+            setShowSign(false)
+            setShowAuth(true)}} 
+            className="font-semibold cursor-pointer underline underline-offset-2 hover:opacity-70 transition-opacity" style={{ color: "#1e3a34" }}>
             Join here
-          </a>
+          </span>
         </p>
 
         {/* Google + Email */}
@@ -189,8 +202,9 @@ function RightPanel() {
 }
 
 /* ─── PAGE ───────────────────────────────────────────── */
-export default function SignInPage({ onClose }: { onClose: () => void }) {
+export default function SignInPage({ onClose, setShowAuth, setShowSign }: signInProps ) {
+
   return (
-    <AuthOverlay left={<LeftPanel />} right={<RightPanel />} onClose={onClose} />
+    <AuthOverlay left={<LeftPanel />} right={<RightPanel setShowAuth={ setShowAuth } setShowSign={setShowSign} />} onClose={onClose} />
   );
 }

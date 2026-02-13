@@ -33,7 +33,7 @@ export default function Logo({
         className="font-serif font-bold"
         style={{ fontSize: s.text, color: textColor }}
       >
-        orange<span style={{ color: "#F28C38" }}>cat</span>
+        orange<span style={{ color: "white" }}>cart</span>
       </span>
     </div>
   );

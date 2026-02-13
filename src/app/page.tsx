@@ -66,10 +66,10 @@ const OrangeCartHomepage = () => {
           </div>
           
           <div className={`hidden md:flex items-center gap-8 ${theme.text}`}>
-            <a href="#" className="hover:opacity-80 transition">Categories</a>
-            <a href="#" className="hover:opacity-80 transition">Deals</a>
-            <a href="#" className="hover:opacity-80 transition">About</a>
-            <a href="#" className="hover:opacity-80 transition">Contact</a>
+            <Link href="#" className="hover:opacity-80 transition">Categories</Link>
+            <Link href={'/deals'} className="hover:opacity-80 transition">Deals</Link>
+            <Link href={'/about'} className="hover:opacity-80 transition">About</Link>
+            <Link href={'/contact'} className="hover:opacity-80 transition">Contact</Link>
           </div>
 
           <div className="flex items-center gap-4">
@@ -83,8 +83,8 @@ const OrangeCartHomepage = () => {
         </div>
       </nav>
 
-    {showSign && <SignInFlow onClose={() => setShowSign(false)} />}
-    {showAuth && <SignUpFlow onClose={() => setShowAuth(false)} />}
+    {showSign && <SignInFlow onClose={() => setShowSign(false)} setShowAuth={setShowAuth} setShowSign={setShowSign}  />}
+    {showAuth && <SignUpFlow onClose={() => setShowAuth(false)} setShowAuth={setShowAuth} setShowSign={setShowSign}/>}
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 h-96 md:h-[1100px]">
         <div className="grid md:grid-cols-2 items-center h-full gap-12">
