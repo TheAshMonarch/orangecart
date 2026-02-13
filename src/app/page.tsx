@@ -9,6 +9,7 @@ const OrangeCartHomepage = () => {
   const [currentTheme, setCurrentTheme] = useState(0);
   const [showAuth, setShowAuth] = useState(false);
   const [showSign, setShowSign] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Color themes that work well with orange and white
   const themes = [
@@ -56,93 +57,115 @@ const OrangeCartHomepage = () => {
     <div className={`min-h-screen ${theme.bg} transition-all duration-1000 ease-in-out`}>
       {/* Navigation */}
       
-      <nav className="px-6 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className={`text-2xl font-bold ${theme.text} flex items-center gap-2`}>
-            <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm">
-              🐱
-            </div>
-            orangecart
-          </div>
-          
-          <div className={`hidden md:flex items-center gap-8 ${theme.text}`}>
-            <Link href="#" className="hover:opacity-80 transition">Categories</Link>
-            <Link href={'/deals'} className="hover:opacity-80 transition">Deals</Link>
-            <Link href={'/about'} className="hover:opacity-80 transition">About</Link>
-            <Link href={'/contact'} className="hover:opacity-80 transition">Contact</Link>
-          </div>
+ <nav className="px-4 py-4 md:px-6">
+  <div className="max-w-7xl mx-auto flex items-center justify-between">
+    {/* Logo */}
+    <div className={`text-2xl font-bold ${theme.text} flex items-center gap-2`}>
+      <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm">
+        🐱
+      </div>
+      orangecart
+    </div>
 
-          <div className="flex items-center gap-4">
-            <button onClick={() => setShowSign(true)} className={`${theme.text} hover:opacity-80 transition`}>
-              Signin
-            </button>
-            <button onClick={() => setShowAuth(true)} className={`px-6 py-2 rounded-lg ${theme.button} transition font-medium`}>
-              Join
-            </button>
-          </div>
-        </div>
-      </nav>
+    {/* Desktop links */}
+    <div className={`hidden md:flex items-center gap-8 ${theme.text}`}>
+      <Link href="#" className="hover:opacity-80 transition">Categories</Link>
+      <Link href="/deals" className="hover:opacity-80 transition">Deals</Link>
+      <Link href="/about" className="hover:opacity-80 transition">About</Link>
+      <Link href="/contact" className="hover:opacity-80 transition">Contact</Link>
+    </div>
+
+    {/* Auth buttons - hide join on very small screens if needed */}
+    <div className="flex items-center gap-3 md:gap-4">
+      <button onClick={() => setShowSign(true)} className={`${theme.text} hover:opacity-80 transition text-sm md:text-base`}>
+        Sign in
+      </button>
+      <button onClick={() => setShowAuth(true)} className={`px-4 py-2 md:px-6 md:py-2 rounded-lg ${theme.button} transition font-medium text-sm md:text-base`}>
+        Join
+      </button>
+
+      {/* Hamburger */}
+      <button 
+        className="md:hidden text-2xl" 
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
+        <Menu size={28} />
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile menu dropdown */}
+  {isMobileMenuOpen && (
+    <div className="md:hidden mt-4 px-4 py-6 bg-white/10 backdrop-blur-md rounded-xl">
+      <div className="flex flex-col gap-5 text-center">
+        <Link href="#" onClick={() => setIsMobileMenuOpen(false)}>Categories</Link>
+        <Link href="/deals" onClick={() => setIsMobileMenuOpen(false)}>Deals</Link>
+        <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+        <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+      </div>
+    </div>
+  )}
+</nav>
 
     {showSign && <SignInFlow onClose={() => setShowSign(false)} setShowAuth={setShowAuth} setShowSign={setShowSign}  />}
     {showAuth && <SignUpFlow onClose={() => setShowAuth(false)} setShowAuth={setShowAuth} setShowSign={setShowSign}/>}
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 h-96 md:h-[1100px]">
-        <div className="grid md:grid-cols-2 items-center h-full gap-12">
-          {/* Left Content */}
-          <div className="space-y-8 ">
-            <div className="space-y-4">
-              <p className={`text-sm uppercase tracking-wider ${theme.text} opacity-80`}>
-                Ecommerce Platform
-              </p>
-              <h1 className={`text-5xl md:text-6xl font-bold ${theme.text} leading-tight`}>
-                Shop everything
-                <br />
-                in one place
-              </h1>
-            </div>
+<div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+  <div className="flex flex-col md:grid md:grid-cols-2 items-center gap-10 md:gap-12">
+    {/* Left - Content (full width on mobile) */}
+    <div className="space-y-6 md:space-y-8 w-full">
+      <div className="space-y-3 md:space-y-4">
+        <p className={`text-xs sm:text-sm uppercase tracking-wider ${theme.text} opacity-80`}>
+          Ecommerce Platform
+        </p>
+        <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold ${theme.text} leading-tight text-center md:text-left`}>
+          Shop everything
+          <br className="hidden sm:block" />
+          in one place
+        </h1>
+      </div>
 
             {/* Search Input */}
-            <div className="space-y-4">
-              <div className={`flex items-center gap-3 ${theme.inputBg} rounded-xl px-6 py-4 border border-white/20`}>
-                <Search className={theme.text} size={20} />
-                <input
-                  type="text"
-                  placeholder="Search for products..."
-                  className={`flex-1 bg-transparent ${theme.inputText} outline-none`}
-                />
-              </div>
-              
-              <div className="flex gap-3">
-                <button className={`flex-1 px-8 py-4 rounded-xl ${theme.button} transition font-medium text-lg shadow-lg`}>
-                  Start Shopping
-                </button>
-                <button className={`px-8 py-4 rounded-xl ${theme.inputBg} ${theme.text} transition font-medium text-lg border border-white/20 hover:bg-white/20`}>
-                  Browse Categories
-                </button>
-              </div>
-            </div>
+           <div className="space-y-4 max-w-md mx-auto md:mx-0">
+        <div className={`flex items-center gap-3 ${theme.inputBg} rounded-xl px-5 py-3 sm:py-4 border border-white/20`}>
+          <Search className={theme.text} size={20} />
+          <input
+            type="text"
+            placeholder="Search for products..."
+            className={`flex-1 bg-transparent ${theme.inputText} outline-none text-base`}
+          />
+        </div>
+        
+        <div className="flex flex-col sm:flex-row gap-3">
+          <button className={`flex-1 px-6 py-3 sm:py-4 rounded-xl ${theme.button} transition font-medium text-base sm:text-lg shadow-lg`}>
+            Start Shopping
+          </button>
+          <button className={`flex-1 px-6 py-3 sm:py-4 rounded-xl ${theme.inputBg} ${theme.text} transition font-medium text-base sm:text-lg border border-white/20 hover:bg-white/20`}>
+            Browse Categories
+          </button>
+        </div>
+      </div>
 
             {/* Rating */}
-            <div className={`flex items-center gap-3 ${theme.text}`}>
-              <div className="flex items-center">
-                {[1, 2, 3, 4].map((i) => (
-                  <span key={i} className="text-orange-400 text-xl">★</span>
-                ))}
-                <span className="text-orange-400 text-xl opacity-40">★</span>
-              </div>
-              <span className="text-2xl font-bold">4.8/5</span>
-              <span className="opacity-70">from 12,456 reviews</span>
-            </div>
+            <div className={`flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 ${theme.text}`}>
+        {/* rating stars */}
+        <div className="flex items-center gap-1">
+          {[1,2,3,4].map(i => <span key={i} className="text-orange-400 text-xl">★</span>)}
+          <span className="text-orange-400 text-xl opacity-40">★</span>
+        </div>
+        <span className="text-xl font-bold">4.8/5</span>
+        <span className="opacity-70 text-sm sm:text-base">from 12,456 reviews</span>
+      </div>
 
-            <div className={`${theme.text} opacity-80`}>
-              <a href="#" className="hover:opacity-100 transition inline-flex items-center gap-2">
-                Check out our customer stories →
-              </a>
-            </div>
-          </div>
+      <div className={`${theme.text} opacity-80 text-center md:text-left`}>
+        <a href="#" className="hover:opacity-100 transition inline-flex items-center gap-2 text-sm sm:text-base">
+          Check out our customer stories →
+        </a>
+      </div>
+    </div>
 
           {/* Right - Product Showcase */}
-          <div className="relative h-[500px] md:h-[600px]">
+          <div className="relative min-h-[400px] sm:min-h-[500px] md:h-[600px] w-full md:block hidden lg:block">
             {/* Floating Product Images */}
             <div className="absolute inset-0 flex items-center justify-center">
               {/* Phone */}
