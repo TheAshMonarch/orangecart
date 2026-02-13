@@ -538,13 +538,13 @@ const OrangeCartHomepage = () => {
             <div className="max-w-md">
               <h3 className="font-bold text-lg mb-3">Stay updated</h3>
               <p className="text-gray-400 mb-4">Subscribe to our newsletter for exclusive deals and updates</p>
-              <div className="flex gap-2">
+              <div className="flex flex-col md:flex-row gap-2">
                 <input
                   type="email"
                   placeholder="Enter your email"
                   className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-orange-500 transition"
                 />
-                <button className="px-6 py-3 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition">
+                <button className="px-6 py-3 bg-orange-500 b text-white rounded-lg font-medium hover:bg-orange-600 transition">
                   Subscribe
                 </button>
               </div>
